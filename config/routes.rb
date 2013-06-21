@@ -1,6 +1,8 @@
 SwipeBook::Application.routes.draw do
   resources :passages
 
+  root :to => 'passages#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
