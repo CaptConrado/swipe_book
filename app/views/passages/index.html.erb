@@ -1,0 +1,98 @@
+<!DOCTYPE HTML> 
+<html>
+<head>
+<title>Swipe 2</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/> 
+<link href='style.css' rel='stylesheet'/>
+<style>
+
+/* Swipe 2 required styles */
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+}
+
+/* END required styles */
+
+</style>
+
+</head>
+<body>
+
+<h1>Listing passages</h1>
+
+<div id='mySwipe' style='max-width:500px;margin:0 auto' class='swipe'>
+  <div class='swipe-wrap'>
+
+    <!-- This is a thing -->
+    
+
+
+    <% @passages.each do |passage| %>
+    <div>
+      <b>
+        <%= passage.quote %> 
+        <%= passage.title %> 
+        <%= passage.page %> 
+        <%= passage.author %> 
+      </b>
+      <center>
+     <%= link_to 'Show', passage %> 
+     <%= link_to 'Edit', edit_passage_path(passage) %> 
+     <%= link_to 'Destroy', passage, method: :delete, data: { confirm: 'Are you sure?' } %> 
+     </center>
+    </div>
+     
+     <% end %>
+    <!-- k -->
+  </div>
+</div>
+
+
+
+<div style='text-align:center;padding-top:20px;'>
+  
+  <button onclick='mySwipe.prev()'>prev</button> 
+  <button onclick='mySwipe.next()'>next</button>
+
+</div>
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src='swipe.js'></script>
+<script>
+
+// pure JS
+var elem = document.getElementById('mySwipe');
+window.mySwipe = Swipe(elem, {
+  // startSlide: 4,
+  // auto: 3000,
+  // continuous: true,
+  // disableScroll: true,
+  // stopPropagation: true,
+  // callback: function(index, element) {},
+  // transitionEnd: function(index, element) {}
+});
+
+// with jQuery
+// window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+
+</script>
+
+
+
+<%= link_to 'New Passage', new_passage_path %>
